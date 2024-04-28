@@ -328,12 +328,12 @@ async def exchange(interaction : discord.Interaction):
             await interaction.response.send_message("You do not have permissions to do this", ephemeral=True)
             return
 
-    embed=discord.Embed(title="**Exchange rate:**",description="1 USD = 0.79 gpb = 0.93 Euro", color=0x00ff00)
+    embed=discord.Embed(title="**Exchange rate:**",description="1 USD = 0.79 GBP = 0.93 Euro", color=0x00ff00)
     await interaction.response.send_message(embed=embed)
 
 @bot.tree.command(name="calculate", description = "Calculate price in different currency")
 @app_commands.describe(price = "Input price in USD", second_currency = "Currency to convert into")
-async def calculate(interaction : discord.Interaction, price : str, second_currency : typing.Literal['gpb','euro']):
+async def calculate(interaction : discord.Interaction, price : str, second_currency : typing.Literal['GBP','Euro']):
     support = np.load("support.npy", allow_pickle=True).item()
     admin = np.load("admin.npy", allow_pickle=True).item()
 
@@ -343,7 +343,7 @@ async def calculate(interaction : discord.Interaction, price : str, second_curre
             return
 
     price = float(price)
-    if second_currency == "gpb":
+    if second_currency == "GBP":
         price = price * 0.79
     else:
         price = price * 0.93
